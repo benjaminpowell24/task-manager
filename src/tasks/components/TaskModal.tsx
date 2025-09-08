@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTaskContext } from "../../context/TaskContext";
 import { Task as TaskType} from "./types"; 
 
-const TaskModal = ({handleModalClose}: {handleModalClose: () => void}) => {
+const TaskModal = ({isModalOpen, handleModalClose}: {isModalOpen: boolean, handleModalClose: () => void}) => {
   const {setTasks} = useTaskContext();
   const [input, setInput] = useState<TaskType>({ id: Date.now(), name: "", description: "", priority: "low" });
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -24,9 +25,27 @@ const TaskModal = ({handleModalClose}: {handleModalClose: () => void}) => {
     return handleModalClose();
   }
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dialogRef.current && !dialogRef.current.contains(event.target as Node)) {
+        handleModalClose();
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isModalOpen,handleModalClose]);
+
+  if (!isModalOpen) return null;
+
   return (
-   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" role="dialog" aria-modal="true">
-    <div className="bg-white border border-gray-50 rounded-lg shadow-lg max-w-sm md:max-w-md lg:max-w-2xl w-full py-5">
+   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" role="dialog" aria-modal="true" >
+    <div className="bg-white border border-gray-50 rounded-lg shadow-lg max-w-sm md:max-w-md lg:max-w-2xl w-full py-5 " ref={dialogRef}>
      <div className="flex flex-col space-y-4">
      <h1 className="text-xl font-semibold text-center my-4">Create Task</h1>
      <div className="flex flex-col max-w-sm md:max-w-lg px-2 md:mx-auto w-full py-4">
