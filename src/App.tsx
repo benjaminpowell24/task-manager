@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TaskList from "./components/Tasks"
-import { Add, Filter } from "iconsax-reactjs"
+import Filter from "./components/Filter";
+import { Add } from "iconsax-reactjs"
 import TaskModal from "./components/Tasks/TaskModal";
 import { useTaskContext } from "./context/TaskContext";
   
@@ -31,10 +32,7 @@ function App() {
             <Add />
             <span>Add Task</span>
           </button>
-          <button className="bg-gray-100 text-gray-500 px-2 py-2 rounded flex items-center gap-1 hover:bg-gray-200 cursor-pointer">
-            <Filter />
-            <span>Filter Tasks</span>
-          </button>
+          <Filter />
         </div>
         <TaskList tasks={tasks} />
     </div>
