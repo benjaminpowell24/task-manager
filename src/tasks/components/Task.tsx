@@ -45,7 +45,7 @@ export const Task = (task: TaskType) => {
       <button className="bg-gray-100 text-gray-500 px-2 py-1 rounded hover:bg-blue-500 hover:text-white hover: cursor-pointer" onClick={handleEdit}>
         <Edit />
       </button>
-      <button className="bg-gray-100 text-red-500 px-2 py-1 rounded hover:bg-red-500 hover:text-white hover:cursor-pointer">
+      <button className="bg-gray-100 text-red-500 px-2 py-1 rounded hover:bg-red-500 hover:text-white hover:cursor-pointer" onClick={handleDelete}>
         <Trash/>
       </button>
      </div>
