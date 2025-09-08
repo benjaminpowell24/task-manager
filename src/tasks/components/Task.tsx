@@ -1,14 +1,12 @@
 import { Trash, Edit } from "iconsax-reactjs"
+import {Task as TaskType} from "./types"
 
-export const Task = ({name, description, priority}: {
- name: string
- description: string
- priority: string
-}) => {
+export const Task = ({name, description, priority}: TaskType) => {
+
   const priorityColors: Record<string, string> = {
-    High: 'bg-red-500',
-    Medium: 'bg-yellow-500',
-    Low: 'bg-green-500'
+    high: 'bg-red-500',
+    medium: 'bg-yellow-500',
+    low: 'bg-green-500'
   }
 
   return (

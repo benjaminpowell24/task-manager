@@ -8,7 +8,7 @@ describe("Task", () => {
   });
 
   it("should render a task", () => {
-    render(<Task name="Test Task" description="This is a test task" priority="High" />);
+    render(<Task id={1} name="Test Task" description="This is a test task" priority="high" />);
     const taskElement = screen.getByRole("listitem");
     expect(taskElement).toBeInTheDocument();
   });
