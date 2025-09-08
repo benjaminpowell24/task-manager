@@ -2,8 +2,10 @@ import { Trash, Edit } from "iconsax-reactjs"
 import { TaskType} from "./types"
 import { useState } from "react";
 import TaskModal from "./TaskModal";
+import { useTaskContext } from "../../context/TaskContext";
 
 export const Task = (task: TaskType) => {
+  const {setTasks} = useTaskContext();
   const {id, name, description, priority} = task;
   const [isEditing, setIsEditing] = useState(false);
 
@@ -19,6 +21,13 @@ export const Task = (task: TaskType) => {
 
   const handleModalClose = () => {
     setIsEditing(false);
+  }
+
+  const handleDelete = () => {
+    const tasks = localStorage.getItem("tasks");
+    const updatedTasks = JSON.parse(tasks || "[]").filter((task: TaskType) => task.id !== id);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
   }
 
   return (
