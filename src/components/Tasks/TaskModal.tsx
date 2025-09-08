@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useTaskContext } from "../../context/TaskContext";
-import { TaskModalType, TaskType} from "./types"; 
+import type { TaskModalType, TaskType } from "./types"; 
 
 const TaskModal = ({isModalOpen, handleModalClose, mode="create", taskId}: TaskModalType) => {
   const {setTasks} = useTaskContext();

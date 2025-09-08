@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import TaskList from "..";
 import {render, screen} from "@testing-library/react";
-import { TaskType } from '../types';
+import type { TaskType } from '../types';
 
 const mockTasks: TaskType[] = [
   { id: 1, name: "Test Task 1", description: "This is a test task", priority: "high" },

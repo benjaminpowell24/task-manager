@@ -1,5 +1,5 @@
 import { Trash, Edit } from "iconsax-reactjs"
-import { TaskType} from "./types"
+import type { TaskType } from "./types";
 import { useState } from "react";
 import TaskModal from "./TaskModal";
 import { useTaskContext } from "../../context/TaskContext";

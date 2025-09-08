@@ -1,7 +1,18 @@
 {
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "include": [
+    "src/**/*.{ts,tsx}"
+  ],
   "compilerOptions": {
     "allowJs": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -20,18 +31,9 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-    
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.node.json" }
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
 }

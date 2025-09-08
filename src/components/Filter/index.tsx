@@ -1,38 +1,42 @@
-import { useState } from "react";
 import { useTaskContext } from "../../context/TaskContext";
-import { TaskType } from "../Tasks/types";
+import type { TaskType } from "../Tasks/types";
 import { Filter as FilterIcon } from "iconsax-reactjs";
-import { FilterOptionsType } from "./type";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 const Filter = () => {
   const { setTasks } = useTaskContext();
-  const [priority, setPriority] = useState<FilterOptionsType>("all");
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPriority(e.target.value as FilterOptionsType);
+  const handleChange = (value: string) => {
 
     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
 
     const filteredTasks = tasks.filter((task: TaskType) => {
-      if (e.target.value === "all") return true;
-      return task.priority === e.target.value;
+      if (value === "all") return true;
+      return task.priority === value;
     });
 
     setTasks(filteredTasks);
   }
 
   return (
-    <div className="bg-gray-100 text-gray-500 px-2 py-2 rounded flex items-center gap-2: hover:bg-gray-200 cursor-pointer">
-       <button className="flex items-center gap-1 ">
+      <Select onValueChange={handleChange}>
+        <SelectTrigger className="w-[120px]">
           <FilterIcon size={18}/>
-       </button>
-     <select name="priority" id="priority" aria-label="Priority" className="border-0 outline-0" value={priority} onChange={handleChange}>
-          <option value="all">All</option>
-           <option value="low">Low</option>
-           <option value="medium">Medium</option>
-           <option value="high">High</option>
-         </select>
-    </div>
+          <SelectValue/>
+       </SelectTrigger>
+       <SelectContent>
+         <SelectItem value="all">All</SelectItem>
+         <SelectItem value="low">Low</SelectItem>
+         <SelectItem value="medium">Medium</SelectItem>
+         <SelectItem value="high">High</SelectItem>
+       </SelectContent>
+     </Select>
   )
 }
 
