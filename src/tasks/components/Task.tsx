@@ -12,7 +12,7 @@ export const Task = ({name, description, priority}: {
   }
 
   return (
-    <div className="w-full bg-white rounded-lg shadow-md p-4">
+    <li className="w-full bg-white rounded-lg shadow-md p-4">
      <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">{name}</h2>
         <div className="flex items-center space-x-2">
@@ -29,7 +29,7 @@ export const Task = ({name, description, priority}: {
         <Trash/>
       </button>
      </div>
-    </div>
+    </li>
   )
 }
 

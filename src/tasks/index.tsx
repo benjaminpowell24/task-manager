@@ -1,4 +1,4 @@
-import Task from "./Task"
+import Task from "./components/Task"
 
 const list = [
  {
@@ -24,11 +24,11 @@ const list = [
 const TaskList = () => {
   return (
       <div className="max-w-xl mx-auto mt-6">
-        <div className="flex flex-col items-center space-y-6">
+        <ul className="flex flex-col items-center space-y-6">
         {list.map(task => (
           <Task key={task.id} {...task} />
         ))}
-        </div>
+        </ul>
       </div>
   )
 }

@@ -1,4 +1,4 @@
-import TaskList from "./tasks/TaskList"
+import TaskList from "./tasks/"
 import { Add } from "iconsax-reactjs"
 
 function App() {
