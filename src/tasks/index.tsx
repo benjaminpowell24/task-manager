@@ -1,5 +1,5 @@
 import Task from "./components/Task"
-import { Task as TaskType } from "./components/types"
+import { TaskType } from "./components/types"
 
 const TaskList = ({ tasks }: { tasks: TaskType[] }) => {
 
