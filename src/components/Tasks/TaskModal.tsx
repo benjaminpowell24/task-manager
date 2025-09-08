@@ -93,7 +93,7 @@ const TaskModal = ({isModalOpen, handleModalClose, mode="create", taskId}: TaskM
    
      </div>
       <div className="flex gap-4 justify-center my-4">
-     <button type="submit" onClick={mode === 'edit' ? handleUpdate : handleCreate} className={`${input.name ? "bg-blue-500 hover:cursor-pointer" : "bg-gray-300 hover:cursor-not-allowed"} text-white py-2 px-4 rounded `} disabled={!input.name}>{mode === 'edit' ? 'Update Task': 'Create Task'}</button>
+     <button type="submit" onClick={mode === 'edit' ? handleUpdate : handleCreate} className={`${input.name ? "bg-blue-500 hover:cursor-pointer" : "bg-gray-300 hover:cursor-not-allowed"} text-white py-2 px-4 rounded `} disabled={!input.name}>Save</button>
      <button type="button" onClick={handleCancel} className="border border-gray-300 text-gray-700 py-2 px-4 rounded hover:cursor-pointer">Cancel</button>
       </div>
       

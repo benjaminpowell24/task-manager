@@ -1,5 +1,4 @@
 import { useTaskContext } from "../../context/TaskContext";
-import type { TaskType } from "../Tasks/types";
 import { Filter as FilterIcon } from "iconsax-reactjs";
 import {
   Select,
@@ -10,25 +9,17 @@ import {
 } from "@/components/ui/select"
 
 const Filter = () => {
-  const { setTasks } = useTaskContext();
+  const { setPriority, priority } = useTaskContext();
 
   const handleChange = (value: string) => {
-
-    const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-
-    const filteredTasks = tasks.filter((task: TaskType) => {
-      if (value === "all") return true;
-      return task.priority === value;
-    });
-
-    setTasks(filteredTasks);
+    setPriority(value);
   }
 
   return (
-      <Select onValueChange={handleChange}>
-        <SelectTrigger className="w-[120px]">
+      <Select onValueChange={handleChange} value={priority}>
+        <SelectTrigger className="w-[120px] hover:cursor-pointer">
           <FilterIcon size={18}/>
-          <SelectValue/>
+          <SelectValue defaultValue={"all"}/>
        </SelectTrigger>
        <SelectContent>
          <SelectItem value="all">All</SelectItem>

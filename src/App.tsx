@@ -1,40 +1,28 @@
-import { useState } from "react";
 import TaskList from "./components/Tasks"
 import Filter from "./components/Filter";
-import { Add } from "iconsax-reactjs"
-import TaskModal from "./components/Tasks/TaskModal";
 import { useTaskContext } from "./context/TaskContext";
+import CreateTaskButton from "./components/Tasks/CreateTaskButton";
+import Search from "./components/Search";
   
 
 function App() {
-  const { isLoading, tasks } = useTaskContext();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  }
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const { taskList } = useTaskContext();
 
   return (
     <div className="bg-gray-100">
-    <div className="min-h-screen p-6 mx-auto max-w-xl">
-        {isModalOpen && <TaskModal isModalOpen={isModalOpen} handleModalClose={handleModalClose}/>}
-        <h1 className="text-3xl font-bold text-center my-4">Task Manager App</h1>
-        <div className="flex justify-between">
-          <button className="bg-blue-500 text-white px-2 py-2 rounded flex items-center gap-1 hover:bg-blue-600 cursor-pointer" onClick={handleModalOpen}>
-            <Add />
-            <span>Add Task</span>
-          </button>
-          <Filter />
+    <div className="min-h-screen p-6 mx-auto ">
+        <h1 className="text-4xl font-bold text-foreground mb-2 text-center">Task Manager</h1>
+        <p className="text-muted-foreground text-lg text-center">Organize and Manage your tasks efficiently</p>
+        <div className="flex justify-between items-center max-w-5xl mx-auto">
+          <div className="max-w-3xl w-full">
+            <Search />
+          </div>
+          <div className="flex gap-2 items-center">
+            <Filter />
+            <CreateTaskButton />
+          </div>
         </div>
-        <TaskList tasks={tasks} />
+        <TaskList tasks={taskList} />
     </div>
 
     </div>

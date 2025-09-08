@@ -4,7 +4,6 @@ import {render, screen} from "@testing-library/react";
 
 jest.mock('../../../context/TaskContext', () => ({
   useTaskContext: () => ({
-    isLoading: false,
     setTasks: jest.fn()
   })
 }));
@@ -20,4 +19,8 @@ describe("Task", () => {
     const taskElement = screen.getByRole("listitem");
     expect(taskElement).toBeInTheDocument();
   });
+
+  it.todo('should edit a task');
+
+  it.todo('should delete a task');
 });
