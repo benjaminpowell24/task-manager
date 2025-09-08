@@ -23,10 +23,12 @@ const list = [
 
 const TaskList = () => {
   return (
-      <div className="flex flex-col items-center space-y-6">
+      <div className="max-w-xl mx-auto mt-6">
+        <div className="flex flex-col items-center space-y-6">
         {list.map(task => (
           <Task key={task.id} {...task} />
         ))}
+        </div>
       </div>
   )
 }
