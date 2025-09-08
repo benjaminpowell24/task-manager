@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useTaskContext } from "../../context/TaskContext";
+import { Task as TaskType} from "./types"; 
 
 const TaskModal = ({handleModalClose}: {handleModalClose: () => void}) => {
-  const [input, setInput] = useState({ id: Date.now(), name: "", description: "", priority: "low" });
+  const {setTasks} = useTaskContext();
+  const [input, setInput] = useState<TaskType>({ id: Date.now(), name: "", description: "", priority: "low" });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -13,7 +16,8 @@ const TaskModal = ({handleModalClose}: {handleModalClose: () => void}) => {
     setInput({ id: Date.now(), name: "", description: "", priority: "low" });
     const tasks = localStorage.getItem("tasks");
     localStorage.setItem("tasks", JSON.stringify([...JSON.parse(tasks || "[]"), input]));
-    handleModalClose();
+    setTasks((prev: TaskType[]) => [...prev, input]);
+    handleModalClose(); 
   }
 
   const handleCancel = () => {

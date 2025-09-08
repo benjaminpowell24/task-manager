@@ -2,9 +2,11 @@ import { useState } from "react";
 import TaskList from "./tasks/"
 import { Add } from "iconsax-reactjs"
 import TaskModal from "./tasks/components/TaskModal";
+import { useTaskContext } from "./context/TaskContext";
   
 
 function App() {
+  const { isLoading, tasks } = useTaskContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModalOpen = () => {
@@ -13,6 +15,10 @@ function App() {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -24,7 +30,7 @@ function App() {
           <Add />
           <span>Add Task</span>
           </button>
-        <TaskList />
+        <TaskList tasks={tasks} />
     </div>
 
     </div>

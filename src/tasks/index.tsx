@@ -1,33 +1,12 @@
 import Task from "./components/Task"
 import { Task as TaskType } from "./components/types"
 
-const list: TaskType[] = [
- {
-  id: 1,
-  name: 'Task 1',
-  description: 'Description for Task 1',
-  priority: 'high'
- },
- {
-  id: 2,
-  name: 'Task 2',
-  description: 'Description for Task 2',
-  priority: 'medium'
- },
- {
-  id: 3,
-  name: 'Task 3',
-  description: 'Description for Task 3',
-  priority: 'low'
- }
-]
-
-const TaskList = () => {
+const TaskList = ({ tasks }: { tasks: TaskType[] }) => {
 
   return (
       <div className="max-w-xl mx-auto mt-6">
         <ul className="flex flex-col items-center space-y-6">
-        {list.map(task => (
+        {tasks.map(task => (
           <Task key={task.id} {...task} />
         ))}
         </ul>
