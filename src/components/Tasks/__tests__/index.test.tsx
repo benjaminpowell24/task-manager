@@ -23,8 +23,8 @@ describe("TaskList", () => {
   });
 
   it("should render a list of tasks", () => {
-    render(<TaskList tasks={mockTasks} />);
-    const taskElements = screen.getAllByRole("listitem");
+    render(<TaskList tasks={mockTasks} handleEdit={()=>{}}/>);
+    const taskElements = screen.getAllByTestId("draggable");
     expect(taskElements).toHaveLength(3);
   });
 });

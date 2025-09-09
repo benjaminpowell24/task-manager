@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import CreateTaskButton from '../CreateTaskButton';
-import { render, screen} from "@testing-library/react";
+import { fireEvent, render, screen} from "@testing-library/react";
 import type { TaskType } from '../types';
 
 const mockTasks: TaskType[] = [
@@ -18,6 +18,8 @@ jest.mock('../../../context/TaskContext', () => ({
 
 jest.mock('../TaskModal', () => () => <div>Mocked Task Modal</div>);
 
+ const mockHandleModalOpen = jest.fn();
+
 describe("Create Task Button test suite", () => {
 
   afterEach(() => {
@@ -25,9 +27,16 @@ describe("Create Task Button test suite", () => {
   });
 
   it("should render the add task button", () => {
-    render(<CreateTaskButton />);
+    render(<CreateTaskButton handleModalOpen={mockHandleModalOpen} />);
     const button = screen.getByRole("button", { name: /add task/i });
     expect(button).toBeInTheDocument();
   });
 
-});
+  it("should call handleModalOpen when the button is clicked", () => {
+    render(<CreateTaskButton handleModalOpen={mockHandleModalOpen} />);
+    const button = screen.getByRole("button", { name: /add task/i });
+    fireEvent.click(button);
+    expect(mockHandleModalOpen).toHaveBeenCalledTimes(1);
+  });
+
+ });

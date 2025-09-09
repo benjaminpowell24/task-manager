@@ -15,13 +15,13 @@ describe("Task Modal test suite", () => {
   });
 
   it("should display the task dialog", () => {
-    render(<TaskModal isModalOpen={true} handleModalClose={jest.fn()} />);
+    render(<TaskModal isModalOpen={true} handleModalClose={jest.fn()} taskId={null} mode='create' />);
     const taskElement = screen.getByRole("dialog");
     expect(taskElement).toBeInTheDocument();
   });
 
   it('should show the form fields for creating a task', () => {
-    render(<TaskModal isModalOpen={true} handleModalClose={jest.fn()} />);
+    render(<TaskModal isModalOpen={true} handleModalClose={jest.fn()} taskId={null} mode='create' />);
     const titleInput = screen.getByLabelText(/task title/i);
     const descriptionInput = screen.getByLabelText(/description/i);
     const prioritySelect = screen.getByLabelText(/priority/i);
@@ -31,7 +31,7 @@ describe("Task Modal test suite", () => {
   });
 
   it('should render the priority select option with low selected', async () => {
-    render(<TaskModal isModalOpen={true} handleModalClose={jest.fn()} />);
+    render(<TaskModal isModalOpen={true} handleModalClose={jest.fn()} taskId={null} mode='create' />);
     const prioritySelect = screen.getByLabelText(/priority/i);
 
     // Open the dropdown
@@ -69,7 +69,7 @@ describe("Task Modal test suite", () => {
 
   it('should call handleModalClose when cancel button is clicked', () => {
     const handleModalClose = jest.fn();
-    render(<TaskModal isModalOpen={true} handleModalClose={handleModalClose} />);
+    render(<TaskModal isModalOpen={true} handleModalClose={handleModalClose} taskId={null} mode='create' />);
     const cancelButton = screen.getByRole('button', { name: /cancel/i });
     fireEvent.click(cancelButton);
     expect(handleModalClose).toHaveBeenCalled();
@@ -86,16 +86,8 @@ describe("Task Modal test suite", () => {
 
   it('should close the modal when clicking outside the dialog', async() => {
     const handleModalClose = jest.fn();
-    render(<TaskModal isModalOpen={true} handleModalClose={handleModalClose} />);
+    render(<TaskModal isModalOpen={true} handleModalClose={handleModalClose} taskId={null} mode='create'/>);
     fireEvent.mouseDown(document.body);
-    await waitFor(() => expect(handleModalClose).toHaveBeenCalled());
-  });
-
-  it('should close the modal when the close button is clicked', async() => {
-    const handleModalClose = jest.fn();
-    render(<TaskModal isModalOpen={true} handleModalClose={handleModalClose} />);
-    const closeButton = screen.getByRole('button', { name: /cancel/i });
-    fireEvent.click(closeButton);
     await waitFor(() => expect(handleModalClose).toHaveBeenCalled());
   });
 

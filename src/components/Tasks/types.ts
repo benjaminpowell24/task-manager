@@ -8,6 +8,6 @@ export type TaskType = {
 export type TaskModalType = {
   isModalOpen: boolean, 
   handleModalClose: () => void, 
-  taskId?: number, 
-  mode?: "edit" | "create"
+  taskId: number|null, 
+  mode: "edit" | "create"
  }
