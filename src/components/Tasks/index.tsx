@@ -4,9 +4,9 @@ import type { TaskType } from "./types";
 const TaskList = ({ tasks }: { tasks: TaskType[] }) => {
 
  if(tasks.length === 0) {
-   return <div className="rounded-lg shadow-md p-4 max-w-xl w-full mt-6">
+   return (<div className="rounded-lg shadow-md p-4 max-w-xl w-full mt-6 flex justify-center items-center mx-auto bg-white">
     <p className="text-gray-500 text-center">You have no tasks scheduled</p>
-   </div>;
+   </div>)
  }
 
   return (
