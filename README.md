@@ -8,6 +8,32 @@ Checkout the app hosted on Netlify here: https://taskmanager-monterosa.netlify.a
 
 ---
 
+## Getting Started
+
+Follow these steps to set up:
+
+#### Prerequisites
+
+- Node.js (v22.x)
+- npm
+
+#### Setup
+  - Clone repository
+
+  ```
+  https://github.com/benjaminpowell24/task-manager.git
+  ```
+  - Install packages
+
+   ```
+    npm install
+  ```
+  - Start application
+  
+  ```
+    npm run dev
+  ```
+
 ## Features
 
 - **Task Management**:
