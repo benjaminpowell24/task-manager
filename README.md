@@ -4,6 +4,8 @@
 
 The **Task Manager App** is a React-based application designed to help users manage their tasks efficiently. It allows users to create, filter, and search tasks, as well as prioritize them based on importance. The app is built with modern tools and libraries, ensuring a smooth and responsive user experience.
 
+Checkout the app hosted on Netlify here: https://taskmanager-monterosa.netlify.app/
+
 ---
 
 ## Features
