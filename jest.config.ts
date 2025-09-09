@@ -7,7 +7,19 @@ const config: Config.InitialOptions = {
   testEnvironment: 'jsdom',
   verbose: true,
   collectCoverage: true,
-  collectCoverageFrom: [`${baseDir}/**/*.ts?(x)`],
+  coverageProvider: "v8",
+  moduleFileExtensions: [
+    "js",
+    "mjs",
+    "cjs",
+    "jsx",
+    "ts",
+    "mts",
+    "cts",
+    "tsx",
+    "json",
+    "node"
+  ],
   testMatch: [`${baseDir}/**/__tests__/*.ts?(x)`],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'

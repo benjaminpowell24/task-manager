@@ -1,69 +1,60 @@
-# React + TypeScript + Vite
+# Task Manager App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The **Task Manager App** is a React-based application designed to help users manage their tasks efficiently. It allows users to create, filter, and search tasks, as well as prioritize them based on importance. The app is built with modern tools and libraries, ensuring a smooth and responsive user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Task Management**:
+  - Add, edit, and delete tasks.
+  - Assign priorities to tasks (Low, Medium, High).
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Search Functionality**:
+  - Quickly find tasks using the search bar.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Filtering**:
+  - Filter tasks by priority (All, Low, Medium, High).
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Responsive Design**:
+  - Optimized for both desktop and mobile devices.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Tech Stack
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Frontend**:
+  - React (with TypeScript)
+  - TailwindCSS for styling
+  - Radix UI for accessible components
+
+- **State Management**:
+  - Context API
+
+- **Testing**:
+  - Jest and React Testing Library for unit tests
+
+- **Build Tool**:
+  - Vite
+
+---
+
+## Folder Structure
+
+```plaintext
+src/
+├── App.tsx                # Main app component
+├── index.css              # Global styles
+├── main.tsx               # App entry point
+├── vite-env.d.ts          # Vite environment types
+├── assets/                # Static assets
+├── components/            # Reusable components
+│   ├── Filter/            # Task filter component
+│   ├── Search/            # Search bar component
+│   ├── Tasks/             # Task-related components
+│   ├── ui/                # UI primitives (button, input, etc.)
+├── context/               # Context for state management
+├── lib/                   # Utility functions
+└── __tests__/             # Unit tests for components
