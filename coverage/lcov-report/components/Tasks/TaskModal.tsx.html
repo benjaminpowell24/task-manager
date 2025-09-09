@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.06% </span>
+                <span class="strong">88.97% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>114/128</span>
+                <span class='fraction'>113/127</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.6% </span>
+                <span class="strong">80.95% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>19/23</span>
+                <span class='fraction'>17/21</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.06% </span>
+                <span class="strong">88.97% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>114/128</span>
+                <span class='fraction'>113/127</span>
             </div>
         
             
@@ -189,8 +189,7 @@
 <a name='L124'></a><a href='#L124'>124</a>
 <a name='L125'></a><a href='#L125'>125</a>
 <a name='L126'></a><a href='#L126'>126</a>
-<a name='L127'></a><a href='#L127'>127</a>
-<a name='L128'></a><a href='#L128'>128</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L127'></a><a href='#L127'>127</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -247,6 +246,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
@@ -269,8 +269,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
@@ -335,7 +333,7 @@ import { Textarea } from "@/components/ui/textarea"
 const TaskModal = ({isModalOpen, handleModalClose, mode="create", taskId}: TaskModalType) =&gt; {
   const {setTasks} = useTaskContext();
   const [input, setInput] = useState&lt;TaskType&gt;({ id: Date.now(), name: "", description: "", priority: "low" });
-  const dialogRef = useRef&lt;HTMLDivElement&gt;(null);
+  const backdropRef = useRef&lt;HTMLDivElement&gt;(null);
 &nbsp;
   type priorityType = "low" | "medium" | "high";
 &nbsp;
@@ -371,9 +369,10 @@ const TaskModal = ({isModalOpen, handleModalClose, mode="create", taskId}: TaskM
     const handleClickOutside = (event: MouseEvent) =&gt; {
       const target = event.target as HTMLElement | null;
 &nbsp;
-      if (dialogRef.current &amp;&amp; !dialogRef.current.contains(target) &amp;&amp; target?.closest &amp;&amp; !target.closest("[data-select-dropdown]")) {
+      if (backdropRef.current &amp;&amp; backdropRef.current === target) {
         handleModalClose();
       }
+&nbsp;
     };
 &nbsp;
     if (isModalOpen) {
@@ -401,8 +400,8 @@ const TaskModal = ({isModalOpen, handleModalClose, mode="create", taskId}: TaskM
   if (!isModalOpen) <span class="branch-0 cbranch-no" title="branch not covered" >return null;</span>
 &nbsp;
   return (
-   &lt;div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" role="dialog" aria-modal="true" &gt;
-    &lt;div className="bg-white border border-gray-50 rounded-lg shadow-lg max-w-sm md:max-w-md lg:max-w-2xl w-full py-5 " ref={dialogRef}&gt;
+   &lt;div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" role="dialog" aria-modal="true" ref={backdropRef}&gt;
+    &lt;div className="bg-white border border-gray-50 rounded-lg shadow-lg max-w-sm md:max-w-md lg:max-w-2xl w-full py-5 "&gt;
      &lt;div className="flex flex-col space-y-4"&gt;
      &lt;h1 className="text-xl font-semibold text-center my-4"&gt;{mode === "edit" ? "Edit Task" : "Create Task"}&lt;/h1&gt;
      &lt;div className="flex flex-col max-w-sm md:max-w-lg px-2 md:mx-auto w-full py-4"&gt;
@@ -436,10 +435,8 @@ const TaskModal = ({isModalOpen, handleModalClose, mode="create", taskId}: TaskM
      &lt;button type="submit" onClick={mode === 'edit' ? handleUpdate : handleCreate} className={`${input.name ? "bg-blue-500 hover:cursor-pointer" : "bg-gray-300 hover:cursor-not-allowed"} text-white py-2 px-4 rounded `} disabled={!input.name}&gt;Save&lt;/button&gt;
      &lt;button type="button" onClick={handleCancel} className="border border-gray-300 text-gray-700 py-2 px-4 rounded hover:cursor-pointer"&gt;Cancel&lt;/button&gt;
       &lt;/div&gt;
-      
     &lt;/div&gt;
     &lt;/div&gt;
-    
    &lt;/div&gt;
   )
 }
@@ -451,7 +448,7 @@ export default TaskModal</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-09-09T11:39:36.974Z
+                at 2025-09-09T12:28:02.905Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

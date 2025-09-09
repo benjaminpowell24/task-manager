@@ -1,36 +1,36 @@
-import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
-import Filter from '..';
+import "@testing-library/jest-dom";
+import { render, screen, fireEvent } from "@testing-library/react";
+import Filter from "..";
 
 const setPriorityMock = jest.fn();
 
-jest.mock('../../../context/TaskContext', () => ({
+jest.mock("../../../context/TaskContext", () => ({
   useTaskContext: () => ({
-    priority: 'all',
+    priority: "all",
     setPriority: setPriorityMock,
   }),
 }));
 
-Object.defineProperty(window.HTMLElement.prototype, 'scrollIntoView', {
+Object.defineProperty(window.HTMLElement.prototype, "scrollIntoView", {
   writable: true,
   value: jest.fn(),
 });
 
-describe('Filter Component', () => {
+describe("Filter Component", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should render the filter dropdown with the default value', () => {
+  it("should render the filter dropdown with the default value", () => {
     render(<Filter />);
-    const filterTrigger = screen.getByRole('combobox');
+    const filterTrigger = screen.getByRole("combobox");
     expect(filterTrigger).toBeInTheDocument();
     expect(filterTrigger).toHaveTextContent(/all/i);
   });
 
-  it('should display the dropdown options when clicked', async () => {
+  it("should display the dropdown options when clicked", async () => {
     render(<Filter />);
-    const filterTrigger = screen.getByRole('combobox');
+    const filterTrigger = screen.getByRole("combobox");
 
     // Open the dropdown
     fireEvent.click(filterTrigger);
@@ -47,9 +47,9 @@ describe('Filter Component', () => {
     expect(highOption).toBeInTheDocument();
   });
 
-  it('should call setPriority when an option is selected', async () => {
+  it("should call setPriority when an option is selected", async () => {
     render(<Filter />);
-    const filterTrigger = screen.getByRole('combobox');
+    const filterTrigger = screen.getByRole("combobox");
 
     // Open the dropdown
     fireEvent.click(filterTrigger);
@@ -59,7 +59,6 @@ describe('Filter Component', () => {
     fireEvent.click(lowOption);
 
     // Check if setPriority is called with "low"
-    expect(setPriorityMock).toHaveBeenCalledWith('low');
+    expect(setPriorityMock).toHaveBeenCalledWith("low");
   });
-
 });

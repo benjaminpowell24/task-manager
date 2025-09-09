@@ -1,10 +1,10 @@
-import type { Config } from '@jest/types'
+import type { Config } from "@jest/types";
 
-const baseDir = '<rootDir>/src/'
+const baseDir = "<rootDir>/src/";
 
 const config: Config.InitialOptions = {
-  preset: 'ts-jest',
-  testEnvironment: 'jsdom',
+  preset: "ts-jest",
+  testEnvironment: "jsdom",
   verbose: true,
   collectCoverage: true,
   coverageProvider: "v8",
@@ -18,12 +18,12 @@ const config: Config.InitialOptions = {
     "cts",
     "tsx",
     "json",
-    "node"
+    "node",
   ],
   testMatch: [`${baseDir}/**/__tests__/*.ts?(x)`],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
-  }
-}
+    "^@/(.*)$": "<rootDir>/src/$1",
+  },
+};
 
-export default config
+export default config;
