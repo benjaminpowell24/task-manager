@@ -18,6 +18,9 @@ The **Task Manager App** is a React-based application designed to help users man
 - **Filtering**:
   - Filter tasks by priority (All, Low, Medium, High).
 
+- **Task Ordering**:
+  - Seamless task ordering with drag and drop functionality.
+
 - **Responsive Design**:
   - Optimized for both desktop and mobile devices.
 
