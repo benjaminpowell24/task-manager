@@ -9,6 +9,9 @@ const config: Config.InitialOptions = {
   collectCoverage: true,
   collectCoverageFrom: [`${baseDir}/**/*.ts?(x)`],
   testMatch: [`${baseDir}/**/__tests__/*.ts?(x)`],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1'
+  }
 }
 
 export default config

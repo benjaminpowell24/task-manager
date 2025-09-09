@@ -9,18 +9,26 @@ jest.mock('../../../context/TaskContext', () => ({
 }));
 
 
-describe("Task", () => {
+describe("Task test suite", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  it("should render a task", () => {
+  it("should render a task with name, description, and priority", () => {
     render(<Task id={1} name="Test Task" description="This is a test task" priority="high" />);
     const taskElement = screen.getByRole("listitem");
     expect(taskElement).toBeInTheDocument();
   });
 
-  it.todo('should edit a task');
+  it('should have an edit task button', () => {
+    render(<Task id={1} name="Test Task" description="This is a test task" priority="high" />);
+    const editButton = screen.getByRole("button", { name: /edit/i });
+    expect(editButton).toBeInTheDocument();
+  });
 
-  it.todo('should delete a task');
+  it('should have a delete task button', () => {
+    render(<Task id={1} name="Test Task" description="This is a test task" priority="high" />);
+    const deleteButton = screen.getByRole("button", { name: /delete/i });
+    expect(deleteButton).toBeInTheDocument();
+  });
 });

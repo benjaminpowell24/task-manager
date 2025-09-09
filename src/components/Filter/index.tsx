@@ -22,10 +22,10 @@ const Filter = () => {
           <SelectValue defaultValue={"all"}/>
        </SelectTrigger>
        <SelectContent>
-         <SelectItem value="all">All</SelectItem>
-         <SelectItem value="low">Low</SelectItem>
-         <SelectItem value="medium">Medium</SelectItem>
-         <SelectItem value="high">High</SelectItem>
+         <SelectItem title="All" value="all">All</SelectItem>
+         <SelectItem title="Low" value="low">Low</SelectItem>
+         <SelectItem title="Medium" value="medium">Medium</SelectItem>
+         <SelectItem title="High" value="high">High</SelectItem>
        </SelectContent>
      </Select>
   )

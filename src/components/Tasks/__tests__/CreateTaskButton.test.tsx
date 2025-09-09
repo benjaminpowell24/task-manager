@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
-import TaskList from "..";
-import {render, screen} from "@testing-library/react";
+import CreateTaskButton from '../CreateTaskButton';
+import { render, screen} from "@testing-library/react";
 import type { TaskType } from '../types';
 
 const mockTasks: TaskType[] = [
@@ -16,15 +16,18 @@ jest.mock('../../../context/TaskContext', () => ({
   })
 }));
 
-describe("TaskList", () => {
+jest.mock('../TaskModal', () => () => <div>Mocked Task Modal</div>);
+
+describe("Create Task Button test suite", () => {
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  it("should render a list of tasks", () => {
-    render(<TaskList tasks={mockTasks} />);
-    const taskElements = screen.getAllByRole("listitem");
-    expect(taskElements).toHaveLength(3);
+  it("should render the add task button", () => {
+    render(<CreateTaskButton />);
+    const button = screen.getByRole("button", { name: /add task/i });
+    expect(button).toBeInTheDocument();
   });
+
 });

@@ -20,7 +20,6 @@ const TaskModal = ({isModalOpen, handleModalClose, mode="create", taskId}: TaskM
 
   type priorityType = "low" | "medium" | "high";
 
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target) {
       const { name, value } = e.target;
@@ -29,7 +28,6 @@ const TaskModal = ({isModalOpen, handleModalClose, mode="create", taskId}: TaskM
   }
 
   const handleCreate = () => {
-    console.log("Task created:", input);
     setInput({ id: Date.now(), name: "", description: "", priority: "low" });
     const tasks = localStorage.getItem("tasks");
     localStorage.setItem("tasks", JSON.stringify([input, ...JSON.parse(tasks || "[]")]));
@@ -38,7 +36,6 @@ const TaskModal = ({isModalOpen, handleModalClose, mode="create", taskId}: TaskM
   }
 
   const handleUpdate = () => {
-    console.log("Task updated:", input);
     const tasks = localStorage.getItem("tasks");
     const updatedTasks = [input, ...JSON.parse(tasks || "[]").filter((task: TaskType) => (task.id !== taskId))];
 
@@ -53,7 +50,9 @@ const TaskModal = ({isModalOpen, handleModalClose, mode="create", taskId}: TaskM
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dialogRef.current && !dialogRef.current.contains(event.target as Node) && !(event.target as HTMLElement).closest("[data-select-dropdown]")) {
+      const target = event.target as HTMLElement | null;
+
+      if (dialogRef.current && !dialogRef.current.contains(target) && target?.closest && !target.closest("[data-select-dropdown]")) {
         handleModalClose();
       }
     };
@@ -95,9 +94,9 @@ const TaskModal = ({isModalOpen, handleModalClose, mode="create", taskId}: TaskM
       </div>     
       <div className="flex flex-col">
         <Label htmlFor="priority" className="font-normal text-gray-500 mb-2">Priority</Label>
-        <Select defaultValue="low"   onValueChange={(value) => setInput((prev) => ({ ...prev, priority: value as priorityType }))}
+        <Select defaultValue="low" name="priority" onValueChange={(value) => setInput((prev) => ({ ...prev, priority: value as priorityType }))}
  value={input.priority}>
-          <SelectTrigger className="hover:cursor-pointer">
+          <SelectTrigger id="priority" className="hover:cursor-pointer">
             <SelectValue/>
          </SelectTrigger>
          <SelectContent data-select-dropdown>
